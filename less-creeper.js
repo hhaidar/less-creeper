@@ -33,7 +33,7 @@ _.each(program.args, function(file) {
             var directory = path.dirname(file);
             // Is the directory already being tracked?
             if (!_.include(directories, directory)) {
-                watch.add(directory);
+                watch.add(directory, true);
                 directories.push(directory);
                 console.log('Watching '.cyan + directory.bold);
             }
