@@ -61,6 +61,7 @@ watch.onChange(function(file, prev, curr, action) {
                 return;
             }
             var parser = new(less.Parser)({
+                paths: [path.dirname(file)],
                 filename: file
             });
             parser.parse(data, function (err, tree) {
@@ -72,7 +73,7 @@ watch.onChange(function(file, prev, curr, action) {
                 }
                 try {
                     var css = tree.toCSS({
-                        // TODO: Maybe make sure this is always bool?
+			// TODO: Maybe make sure this is always bool?
                         compress: program.compress
                     });
                     // Create .css filename from the LESS file
