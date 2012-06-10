@@ -7,6 +7,7 @@ var program = require('commander');
 var watch = require('nodewatch');
 var colors = require('colors');
 var less = require('less');
+var moment = require('moment');
 
 // Setup commander
 program
@@ -32,7 +33,10 @@ _.each(program.args, function(file) {
         if (exists) {
             var directory = path.dirname(file);
             // Is the directory already being tracked?
-            if (!_.include(directories, directory)) {
+            // This checks for recursion too
+            if (!_.any(directories, function(watched) {
+                return directory.indexOf(watched) === 0
+            })) {
                 watch.add(directory, true);
                 directories.push(directory);
                 console.log('Watching '.cyan + directory.bold);
@@ -51,7 +55,6 @@ watch.onChange(function(file, prev, curr, action) {
     if (path.extname(file) !== '.less') {
         return;
     }
-    console.log('Recompiling...'.cyan);
     // Time to parse our tracked LESS files
     _.each(files, function(file) {
         fs.readFile(file, 'utf-8', function(err, data) {
@@ -73,7 +76,7 @@ watch.onChange(function(file, prev, curr, action) {
                 }
                 try {
                     var css = tree.toCSS({
-			// TODO: Maybe make sure this is always bool?
+            // TODO: Maybe make sure this is always bool?
                         compress: program.compress
                     });
                     // Create .css filename from the LESS file
@@ -89,7 +92,8 @@ watch.onChange(function(file, prev, curr, action) {
                                 return;
                             }
                             // Yay we saved!
-                            console.log('Saved '.green + filename.bold);
+                            var date = '[' + moment().format('MMM-DD HH:mm:ss') + ']';
+                            console.log(date.grey + ' Saved '.green + filename.bold);
                         });
                     }
                 } catch (e) {
