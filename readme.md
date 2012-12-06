@@ -1,19 +1,19 @@
 # **LESS Creeper**
 
-A really simple nodejs package that watches and automatically compiles .less files.
+A simple tool to watche and compile .less files.
 
 ## Getting started
 
 Install the npm package
 
 ```
-sudo npm install -g less-creeper
+npm install -g less-creeper
 ```
 
 Party time
 
 ```
-less-creeper mystyles.less
+less-creep mystyles.less
 ```
 
 ## Usage
@@ -21,13 +21,13 @@ less-creeper mystyles.less
 Multiple LESS files at the same time
 
 ```
-less-creeper mystyles.less yourstyles.less awesomestyles.less
+less-creep mystyles.less yourstyles.less awesomestyles.less
 ```
 
 Toggling minfiication on
 
 ```
-less-creeper --compress mystyles.less
+less-creep --compress mystyles.less
 ````
 
 ## Things to keep in mind
