@@ -29,7 +29,7 @@ _.each(program.args, function(file) {
     // Let's get the absolute path
     file = path.resolve(file);
     // Does the file exist?
-    path.exists(file, function(exists) {
+    fs.exists(file, function(exists) {
         if (exists) {
             var directory = path.dirname(file);
             // Is the directory already being tracked?
