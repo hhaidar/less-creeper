@@ -1,7 +1,7 @@
 {
   "name": "less-creeper",
-  "version": "0.0.1",
-  "description": "A simple tool that watches and automatically compiles .less files.",
+  "version": "0.0.2",
+  "description": "Watches and automatically compiles .less files.",
   "author": "Houssam Haidar <me@houssam.org>",
   "bin": {
     "less-creeper": "less-creeper.js",
