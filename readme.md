@@ -1,6 +1,6 @@
 # **LESS Creeper**
 
-A simple tool to watche and compile .less files.
+A simple tool to watch and compile .less files.
 
 ## Getting started
 
